@@ -6,7 +6,7 @@
 #    By: mmravec <mmravec@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/02 10:49:09 by mmravec           #+#    #+#              #
-#    Updated: 2024/10/03 09:13:21 by mmravec          ###   ########.fr        #
+#    Updated: 2024/10/03 12:36:38 by mmravec          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,9 @@ OBJS_CLIENT = $(SRCS_CLIENT:.c=.o)
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
+# Default target to build everything (both server and client)
+all: $(NAME_SERVER) $(NAME_CLIENT)  # Build both server and client
+
 # Rule to build the final server executable
 $(NAME_SERVER): $(LIBFT) $(OBJS_SERVER)
 	$(CC) $(CFLAGS) -o $(NAME_SERVER) $(OBJS_SERVER) -L$(LIBFT_DIR) -lft
@@ -38,9 +41,6 @@ $(NAME_CLIENT): $(LIBFT) $(OBJS_CLIENT)
 # Rule to compile .c files into .o files
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
-
-# Default target to build everything (both server and client)
-all: $(NAME_SERVER) $(NAME_CLIENT)
 
 # Rule to build libft by calling its Makefile
 $(LIBFT):

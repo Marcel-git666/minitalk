@@ -6,7 +6,7 @@
 /*   By: mmravec <mmravec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:04:05 by mmravec           #+#    #+#             */
-/*   Updated: 2024/10/03 09:35:03 by mmravec          ###   ########.fr       */
+/*   Updated: 2024/10/03 12:41:12 by mmravec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	send_char(char c, int pid)
 		else
 			kill(pid, SIGUSR1);
 		bit_count++;
-		usleep(100);
+		usleep(350);
 	}
 }
 
@@ -42,12 +42,12 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	pid = ft_atoi(argv[1]);
-	ft_printf("Sending message to PID: %d\n", pid);
 	if (pid == 0)
 	{
-		ft_printf("Invalid PID\n");
+		ft_printf("Invalid PID: %s\n", argv[1]);
 		return (1);
 	}
+	ft_printf("Sending message to PID: %d\n", pid);
 	message = argv[2];
 	while (*message)
 	{
